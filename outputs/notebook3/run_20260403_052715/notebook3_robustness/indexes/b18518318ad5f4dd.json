@@ -1,0 +1,11 @@
+{
+  "index_name": "ivfflat_nprobe8",
+  "index_kind": "ivfflat",
+  "build_seconds": 0.023098059999938414,
+  "index_size_mb": 2.4251813888549805,
+  "reference_count": 2400,
+  "embed_dim": 256,
+  "nlist": 64,
+  "nprobe": 8,
+  "pq_m": 0
+}

@@ -1,0 +1,15 @@
+{
+  "run_config": {
+    "model_name": "hybrid_transformer",
+    "augmentation_profile": "severity_controlled",
+    "embed_dim": 128,
+    "epochs": 6,
+    "learning_rate": 0.0001,
+    "weight_decay": 0.0001,
+    "temperature": 0.07,
+    "freeze_backbone": false,
+    "enabled": true
+  },
+  "best_epoch": 6,
+  "best_val_loss": 0.11760155215640278
+}

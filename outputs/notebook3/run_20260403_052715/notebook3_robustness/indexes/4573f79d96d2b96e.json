@@ -1,0 +1,11 @@
+{
+  "index_name": "exact_ip",
+  "index_kind": "exact_ip",
+  "build_seconds": 0.0001552300000184914,
+  "index_size_mb": 0.3906679153442383,
+  "reference_count": 800,
+  "embed_dim": 128,
+  "nlist": 0,
+  "nprobe": 0,
+  "pq_m": 0
+}

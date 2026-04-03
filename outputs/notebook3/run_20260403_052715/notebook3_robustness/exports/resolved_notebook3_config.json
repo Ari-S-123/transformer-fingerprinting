@@ -1,0 +1,174 @@
+{
+  "runtime": {
+    "python_version": "3.12.13",
+    "torch_version": "2.10.0+cu128",
+    "torchaudio_version": "2.10.0+cu128",
+    "transformers_version": "5.0.0",
+    "faiss_version": "1.13.2",
+    "cuda_available": true,
+    "device_name": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+    "total_vram_gb": 94.97076416015625,
+    "bf16_supported": true
+  },
+  "config": {
+    "metadata_url": "https://os.unil.cloud.switch.ch/fma/fma_metadata.zip",
+    "audio_url": "https://os.unil.cloud.switch.ch/fma/fma_small.zip",
+    "paths": {
+      "data_root": "/content/data",
+      "output_root": "/content/song_fingerprinting_outputs/notebook3_robustness",
+      "drive_mount_point": "/content/drive",
+      "cache_dir": "/content/song_fingerprinting_outputs/notebook3_robustness/cache",
+      "checkpoint_dir": "/content/song_fingerprinting_outputs/notebook3_robustness/checkpoints",
+      "embedding_cache_dir": "/content/song_fingerprinting_outputs/notebook3_robustness/embeddings",
+      "index_dir": "/content/song_fingerprinting_outputs/notebook3_robustness/indexes",
+      "metrics_dir": "/content/song_fingerprinting_outputs/notebook3_robustness/metrics",
+      "plot_dir": "/content/song_fingerprinting_outputs/notebook3_robustness/plots",
+      "export_dir": "/content/song_fingerprinting_outputs/notebook3_robustness/exports",
+      "log_dir": "/content/song_fingerprinting_outputs/notebook3_robustness/logs"
+    },
+    "seed": 42,
+    "batch_size": 24,
+    "mert_batch_size": 8,
+    "num_workers": 4,
+    "dataloader_prefetch_factor": 4,
+    "dataloader_persistent_workers": true,
+    "sample_rate": 16000,
+    "n_fft": 1024,
+    "hop_length": 256,
+    "n_mels": 128,
+    "segment_seconds": 3.0,
+    "amp_enabled": true,
+    "gradient_checkpointing": false,
+    "early_stopping_patience": 3,
+    "top_k": [
+      1,
+      5,
+      10
+    ],
+    "projection_hidden_dim": 1024,
+    "max_train_tracks": null,
+    "max_eval_tracks": null,
+    "smoke_test_track_count": 16,
+    "gradient_clip_norm": 1.0,
+    "run_presets": [
+      {
+        "model_name": "hybrid_transformer",
+        "augmentation_profile": "filters_only",
+        "embed_dim": 128,
+        "epochs": 6,
+        "learning_rate": 0.0001,
+        "weight_decay": 0.0001,
+        "temperature": 0.07,
+        "freeze_backbone": false,
+        "enabled": true
+      },
+      {
+        "model_name": "hybrid_transformer",
+        "augmentation_profile": "one_of_k",
+        "embed_dim": 128,
+        "epochs": 6,
+        "learning_rate": 0.0001,
+        "weight_decay": 0.0001,
+        "temperature": 0.07,
+        "freeze_backbone": false,
+        "enabled": true
+      },
+      {
+        "model_name": "hybrid_transformer",
+        "augmentation_profile": "severity_controlled",
+        "embed_dim": 128,
+        "epochs": 6,
+        "learning_rate": 0.0001,
+        "weight_decay": 0.0001,
+        "temperature": 0.07,
+        "freeze_backbone": false,
+        "enabled": true
+      },
+      {
+        "model_name": "hybrid_transformer",
+        "augmentation_profile": "two_of_k",
+        "embed_dim": 128,
+        "epochs": 6,
+        "learning_rate": 0.0001,
+        "weight_decay": 0.0001,
+        "temperature": 0.07,
+        "freeze_backbone": false,
+        "enabled": false
+      },
+      {
+        "model_name": "hybrid_transformer",
+        "augmentation_profile": "curriculum_filters_late",
+        "embed_dim": 128,
+        "epochs": 6,
+        "learning_rate": 0.0001,
+        "weight_decay": 0.0001,
+        "temperature": 0.07,
+        "freeze_backbone": false,
+        "enabled": false
+      }
+    ],
+    "strict_artifact_validation": true,
+    "allow_retrain_missing_baselines": false,
+    "mount_google_drive": true,
+    "save_to_drive": true,
+    "use_torch_compile": false,
+    "run_training_ablations": true,
+    "run_faiss_sweep": true,
+    "run_error_analysis": true,
+    "run_pexeso": false,
+    "run_optional_finetune": false,
+    "quick_mode": false,
+    "short_query_lengths_seconds": [
+      1.0,
+      2.0,
+      3.0
+    ],
+    "multi_segment_group_size": 3,
+    "search_oversample_factor": 16,
+    "faiss_nprobe_values": [
+      1,
+      4,
+      8,
+      16
+    ],
+    "active_training_policy_names": [
+      "filters_only",
+      "one_of_k",
+      "severity_controlled"
+    ],
+    "active_control_run_ids": [
+      "cnn_baseline_embed128",
+      "hybrid_transformer_baseline_embed128",
+      "hybrid_transformer_extended_embed128",
+      "hybrid_transformer_extended_embed256",
+      "frozen_mert_extended_embed128"
+    ],
+    "active_query_regime_names": [
+      "clean_current",
+      "short_centered",
+      "short_offcenter",
+      "combined_moderate",
+      "multi_segment_same_track"
+    ],
+    "active_windowing_names": [
+      "single_center",
+      "multi3_even"
+    ],
+    "active_index_names": [
+      "exact_ip",
+      "ivfflat_nprobe1",
+      "ivfflat_nprobe4",
+      "ivfflat_nprobe8",
+      "ivfpq_nprobe4"
+    ],
+    "pexeso_root": null,
+    "optional_partial_unfreeze_last_layers": 2
+  },
+  "notebook2_output_roots": [
+    "/content/song_fingerprinting_outputs",
+    "/content/drive/MyDrive/song_fingerprinting_outputs",
+    "/content/drive/MyDrive/transformer-fingerprinting/song_fingerprinting_outputs",
+    "/content/drive/MyDrive/Colab Notebooks/song_fingerprinting_outputs",
+    "/content/drive/MyDrive/transformer_fingerprinting/artifacts/notebook2/run_20260403_020813/song_fingerprinting_outputs"
+  ]
+}

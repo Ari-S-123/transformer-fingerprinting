@@ -1,0 +1,670 @@
+{
+  "config": {
+    "metadata_url": "https://os.unil.cloud.switch.ch/fma/fma_metadata.zip",
+    "audio_url": "https://os.unil.cloud.switch.ch/fma/fma_small.zip",
+    "paths": {
+      "data_root": "/content/data",
+      "output_root": "/content/song_fingerprinting_outputs/notebook3_robustness",
+      "drive_mount_point": "/content/drive",
+      "cache_dir": "/content/song_fingerprinting_outputs/notebook3_robustness/cache",
+      "checkpoint_dir": "/content/song_fingerprinting_outputs/notebook3_robustness/checkpoints",
+      "embedding_cache_dir": "/content/song_fingerprinting_outputs/notebook3_robustness/embeddings",
+      "index_dir": "/content/song_fingerprinting_outputs/notebook3_robustness/indexes",
+      "metrics_dir": "/content/song_fingerprinting_outputs/notebook3_robustness/metrics",
+      "plot_dir": "/content/song_fingerprinting_outputs/notebook3_robustness/plots",
+      "export_dir": "/content/song_fingerprinting_outputs/notebook3_robustness/exports",
+      "log_dir": "/content/song_fingerprinting_outputs/notebook3_robustness/logs"
+    },
+    "seed": 42,
+    "batch_size": 24,
+    "mert_batch_size": 8,
+    "num_workers": 4,
+    "dataloader_prefetch_factor": 4,
+    "dataloader_persistent_workers": true,
+    "sample_rate": 16000,
+    "n_fft": 1024,
+    "hop_length": 256,
+    "n_mels": 128,
+    "segment_seconds": 3.0,
+    "amp_enabled": true,
+    "gradient_checkpointing": false,
+    "early_stopping_patience": 3,
+    "top_k": [
+      1,
+      5,
+      10
+    ],
+    "projection_hidden_dim": 1024,
+    "max_train_tracks": null,
+    "max_eval_tracks": null,
+    "smoke_test_track_count": 16,
+    "gradient_clip_norm": 1.0,
+    "run_presets": [
+      {
+        "model_name": "hybrid_transformer",
+        "augmentation_profile": "filters_only",
+        "embed_dim": 128,
+        "epochs": 6,
+        "learning_rate": 0.0001,
+        "weight_decay": 0.0001,
+        "temperature": 0.07,
+        "freeze_backbone": false,
+        "enabled": true
+      },
+      {
+        "model_name": "hybrid_transformer",
+        "augmentation_profile": "one_of_k",
+        "embed_dim": 128,
+        "epochs": 6,
+        "learning_rate": 0.0001,
+        "weight_decay": 0.0001,
+        "temperature": 0.07,
+        "freeze_backbone": false,
+        "enabled": true
+      },
+      {
+        "model_name": "hybrid_transformer",
+        "augmentation_profile": "severity_controlled",
+        "embed_dim": 128,
+        "epochs": 6,
+        "learning_rate": 0.0001,
+        "weight_decay": 0.0001,
+        "temperature": 0.07,
+        "freeze_backbone": false,
+        "enabled": true
+      },
+      {
+        "model_name": "hybrid_transformer",
+        "augmentation_profile": "two_of_k",
+        "embed_dim": 128,
+        "epochs": 6,
+        "learning_rate": 0.0001,
+        "weight_decay": 0.0001,
+        "temperature": 0.07,
+        "freeze_backbone": false,
+        "enabled": false
+      },
+      {
+        "model_name": "hybrid_transformer",
+        "augmentation_profile": "curriculum_filters_late",
+        "embed_dim": 128,
+        "epochs": 6,
+        "learning_rate": 0.0001,
+        "weight_decay": 0.0001,
+        "temperature": 0.07,
+        "freeze_backbone": false,
+        "enabled": false
+      }
+    ],
+    "strict_artifact_validation": true,
+    "allow_retrain_missing_baselines": false,
+    "mount_google_drive": true,
+    "save_to_drive": true,
+    "use_torch_compile": false,
+    "run_training_ablations": true,
+    "run_faiss_sweep": true,
+    "run_error_analysis": true,
+    "run_pexeso": false,
+    "run_optional_finetune": false,
+    "quick_mode": false,
+    "short_query_lengths_seconds": [
+      1.0,
+      2.0,
+      3.0
+    ],
+    "multi_segment_group_size": 3,
+    "search_oversample_factor": 16,
+    "faiss_nprobe_values": [
+      1,
+      4,
+      8,
+      16
+    ],
+    "active_training_policy_names": [
+      "filters_only",
+      "one_of_k",
+      "severity_controlled"
+    ],
+    "active_control_run_ids": [
+      "cnn_baseline_embed128",
+      "hybrid_transformer_baseline_embed128",
+      "hybrid_transformer_extended_embed128",
+      "hybrid_transformer_extended_embed256",
+      "frozen_mert_extended_embed128"
+    ],
+    "active_query_regime_names": [
+      "clean_current",
+      "short_centered",
+      "short_offcenter",
+      "combined_moderate",
+      "multi_segment_same_track"
+    ],
+    "active_windowing_names": [
+      "single_center",
+      "multi3_even"
+    ],
+    "active_index_names": [
+      "exact_ip",
+      "ivfflat_nprobe1",
+      "ivfflat_nprobe4",
+      "ivfflat_nprobe8",
+      "ivfpq_nprobe4"
+    ],
+    "pexeso_root": null,
+    "optional_partial_unfreeze_last_layers": 2
+  },
+  "runtime": {
+    "python_version": "3.12.13",
+    "torch_version": "2.10.0+cu128",
+    "torchaudio_version": "2.10.0+cu128",
+    "transformers_version": "5.0.0",
+    "faiss_version": "1.13.2",
+    "cuda_available": true,
+    "device_name": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+    "total_vram_gb": 94.97076416015625,
+    "bf16_supported": true
+  },
+  "augmentation_policies": {
+    "baseline": {
+      "name": "baseline",
+      "description": "Exact Notebook 2 baseline policy.",
+      "selection_strategy": "notebook2_exact",
+      "transforms": [
+        {
+          "name": "gain",
+          "probability": 1.0,
+          "parameters": {
+            "min_db": -6.0,
+            "max_db": 6.0
+          },
+          "order": 0
+        },
+        {
+          "name": "gaussian_noise",
+          "probability": 1.0,
+          "parameters": {
+            "min_snr_db": 10.0,
+            "max_snr_db": 25.0
+          },
+          "order": 1
+        },
+        {
+          "name": "time_stretch",
+          "probability": 1.0,
+          "parameters": {
+            "min_rate": 0.92,
+            "max_rate": 1.08
+          },
+          "order": 2
+        },
+        {
+          "name": "pitch_shift",
+          "probability": 1.0,
+          "parameters": {
+            "min_steps": -2.0,
+            "max_steps": 2.0
+          },
+          "order": 3
+        }
+      ],
+      "max_transforms_per_sample": 4,
+      "enabled": true,
+      "curriculum_transition_epoch": null
+    },
+    "extended_existing": {
+      "name": "extended_existing",
+      "description": "Exact Notebook 2 extended policy.",
+      "selection_strategy": "notebook2_exact",
+      "transforms": [
+        {
+          "name": "gain",
+          "probability": 1.0,
+          "parameters": {
+            "min_db": -6.0,
+            "max_db": 6.0
+          },
+          "order": 0
+        },
+        {
+          "name": "gaussian_noise",
+          "probability": 1.0,
+          "parameters": {
+            "min_snr_db": 10.0,
+            "max_snr_db": 25.0
+          },
+          "order": 1
+        },
+        {
+          "name": "time_stretch",
+          "probability": 1.0,
+          "parameters": {
+            "min_rate": 0.92,
+            "max_rate": 1.08
+          },
+          "order": 2
+        },
+        {
+          "name": "pitch_shift",
+          "probability": 1.0,
+          "parameters": {
+            "min_steps": -2.0,
+            "max_steps": 2.0
+          },
+          "order": 3
+        },
+        {
+          "name": "lowpass",
+          "probability": 1.0,
+          "parameters": {
+            "min_cutoff_hz": 2500.0,
+            "max_cutoff_hz": 5000.0
+          },
+          "order": 4
+        },
+        {
+          "name": "highpass",
+          "probability": 1.0,
+          "parameters": {
+            "min_cutoff_hz": 120.0,
+            "max_cutoff_hz": 900.0
+          },
+          "order": 5
+        }
+      ],
+      "max_transforms_per_sample": 6,
+      "enabled": true,
+      "curriculum_transition_epoch": null
+    },
+    "filters_only": {
+      "name": "filters_only",
+      "description": "Only low-pass or high-pass filtering.",
+      "selection_strategy": "up_to_k",
+      "transforms": [
+        {
+          "name": "lowpass",
+          "probability": 0.55,
+          "parameters": {
+            "min_cutoff_hz": 2800.0,
+            "max_cutoff_hz": 5200.0
+          },
+          "order": 0
+        },
+        {
+          "name": "highpass",
+          "probability": 0.55,
+          "parameters": {
+            "min_cutoff_hz": 160.0,
+            "max_cutoff_hz": 720.0
+          },
+          "order": 1
+        }
+      ],
+      "max_transforms_per_sample": 1,
+      "enabled": true,
+      "curriculum_transition_epoch": null
+    },
+    "one_of_k": {
+      "name": "one_of_k",
+      "description": "Apply exactly one augmentation from a broad candidate set.",
+      "selection_strategy": "exactly_one",
+      "transforms": [
+        {
+          "name": "gain",
+          "probability": 1.0,
+          "parameters": {
+            "min_db": -5.0,
+            "max_db": 5.0
+          },
+          "order": 0
+        },
+        {
+          "name": "gaussian_noise",
+          "probability": 1.0,
+          "parameters": {
+            "min_snr_db": 12.0,
+            "max_snr_db": 24.0
+          },
+          "order": 1
+        },
+        {
+          "name": "time_stretch",
+          "probability": 1.0,
+          "parameters": {
+            "min_rate": 0.94,
+            "max_rate": 1.06
+          },
+          "order": 2
+        },
+        {
+          "name": "pitch_shift",
+          "probability": 1.0,
+          "parameters": {
+            "min_steps": -1.5,
+            "max_steps": 1.5
+          },
+          "order": 3
+        },
+        {
+          "name": "lowpass",
+          "probability": 1.0,
+          "parameters": {
+            "min_cutoff_hz": 2600.0,
+            "max_cutoff_hz": 4800.0
+          },
+          "order": 4
+        },
+        {
+          "name": "highpass",
+          "probability": 1.0,
+          "parameters": {
+            "min_cutoff_hz": 140.0,
+            "max_cutoff_hz": 700.0
+          },
+          "order": 5
+        }
+      ],
+      "max_transforms_per_sample": 1,
+      "enabled": true,
+      "curriculum_transition_epoch": null
+    },
+    "two_of_k": {
+      "name": "two_of_k",
+      "description": "Apply at most two augmentations from a broad candidate set.",
+      "selection_strategy": "up_to_k",
+      "transforms": [
+        {
+          "name": "gain",
+          "probability": 0.45,
+          "parameters": {
+            "min_db": -5.0,
+            "max_db": 5.0
+          },
+          "order": 0
+        },
+        {
+          "name": "gaussian_noise",
+          "probability": 0.6,
+          "parameters": {
+            "min_snr_db": 12.0,
+            "max_snr_db": 24.0
+          },
+          "order": 1
+        },
+        {
+          "name": "time_stretch",
+          "probability": 0.4,
+          "parameters": {
+            "min_rate": 0.95,
+            "max_rate": 1.05
+          },
+          "order": 2
+        },
+        {
+          "name": "pitch_shift",
+          "probability": 0.4,
+          "parameters": {
+            "min_steps": -1.5,
+            "max_steps": 1.5
+          },
+          "order": 3
+        },
+        {
+          "name": "lowpass",
+          "probability": 0.35,
+          "parameters": {
+            "min_cutoff_hz": 2800.0,
+            "max_cutoff_hz": 5000.0
+          },
+          "order": 4
+        },
+        {
+          "name": "highpass",
+          "probability": 0.35,
+          "parameters": {
+            "min_cutoff_hz": 150.0,
+            "max_cutoff_hz": 650.0
+          },
+          "order": 5
+        }
+      ],
+      "max_transforms_per_sample": 2,
+      "enabled": false,
+      "curriculum_transition_epoch": null
+    },
+    "severity_controlled": {
+      "name": "severity_controlled",
+      "description": "Apply one or two milder transforms with narrower parameter ranges.",
+      "selection_strategy": "up_to_k",
+      "transforms": [
+        {
+          "name": "gain",
+          "probability": 0.35,
+          "parameters": {
+            "min_db": -3.0,
+            "max_db": 3.0
+          },
+          "order": 0
+        },
+        {
+          "name": "gaussian_noise",
+          "probability": 0.55,
+          "parameters": {
+            "min_snr_db": 16.0,
+            "max_snr_db": 24.0
+          },
+          "order": 1
+        },
+        {
+          "name": "time_stretch",
+          "probability": 0.35,
+          "parameters": {
+            "min_rate": 0.97,
+            "max_rate": 1.03
+          },
+          "order": 2
+        },
+        {
+          "name": "pitch_shift",
+          "probability": 0.35,
+          "parameters": {
+            "min_steps": -1.0,
+            "max_steps": 1.0
+          },
+          "order": 3
+        },
+        {
+          "name": "lowpass",
+          "probability": 0.25,
+          "parameters": {
+            "min_cutoff_hz": 3200.0,
+            "max_cutoff_hz": 4600.0
+          },
+          "order": 4
+        },
+        {
+          "name": "highpass",
+          "probability": 0.25,
+          "parameters": {
+            "min_cutoff_hz": 180.0,
+            "max_cutoff_hz": 520.0
+          },
+          "order": 5
+        }
+      ],
+      "max_transforms_per_sample": 2,
+      "enabled": true,
+      "curriculum_transition_epoch": null
+    },
+    "curriculum_filters_late": {
+      "name": "curriculum_filters_late",
+      "description": "Start with baseline augmentation, then introduce filters later.",
+      "selection_strategy": "curriculum",
+      "transforms": [
+        {
+          "name": "lowpass",
+          "probability": 0.45,
+          "parameters": {
+            "min_cutoff_hz": 2800.0,
+            "max_cutoff_hz": 5000.0
+          },
+          "order": 4
+        },
+        {
+          "name": "highpass",
+          "probability": 0.45,
+          "parameters": {
+            "min_cutoff_hz": 150.0,
+            "max_cutoff_hz": 650.0
+          },
+          "order": 5
+        }
+      ],
+      "max_transforms_per_sample": 2,
+      "enabled": false,
+      "curriculum_transition_epoch": 2
+    }
+  },
+  "query_regimes": {
+    "clean_current": {
+      "name": "clean_current",
+      "description": "Notebook 2 continuity baseline.",
+      "lengths_seconds": [
+        3.0
+      ],
+      "centered": true,
+      "random_offset": false,
+      "conditions": [
+        "clean",
+        "noise",
+        "pitch",
+        "time",
+        "lowpass",
+        "highpass"
+      ],
+      "group_size": 1,
+      "enabled": true,
+      "apply_fade_envelope": false
+    },
+    "short_centered": {
+      "name": "short_centered",
+      "description": "Short centered queries.",
+      "lengths_seconds": [
+        1.0,
+        2.0,
+        3.0
+      ],
+      "centered": true,
+      "random_offset": false,
+      "conditions": [
+        "clean",
+        "noise",
+        "pitch",
+        "time",
+        "lowpass",
+        "highpass"
+      ],
+      "group_size": 1,
+      "enabled": true,
+      "apply_fade_envelope": false
+    },
+    "short_offcenter": {
+      "name": "short_offcenter",
+      "description": "Short off-center queries.",
+      "lengths_seconds": [
+        1.0,
+        2.0,
+        3.0
+      ],
+      "centered": false,
+      "random_offset": true,
+      "conditions": [
+        "clean",
+        "noise",
+        "pitch",
+        "time",
+        "lowpass",
+        "highpass"
+      ],
+      "group_size": 1,
+      "enabled": true,
+      "apply_fade_envelope": false
+    },
+    "combined_moderate": {
+      "name": "combined_moderate",
+      "description": "Off-center queries with moderate combined degradations.",
+      "lengths_seconds": [
+        1.0,
+        2.0,
+        3.0
+      ],
+      "centered": false,
+      "random_offset": true,
+      "conditions": [
+        "combined_moderate"
+      ],
+      "group_size": 1,
+      "enabled": true,
+      "apply_fade_envelope": false
+    },
+    "multi_segment_same_track": {
+      "name": "multi_segment_same_track",
+      "description": "Aggregate several short segments from one track.",
+      "lengths_seconds": [
+        1.0,
+        2.0
+      ],
+      "centered": false,
+      "random_offset": true,
+      "conditions": [
+        "clean",
+        "combined_moderate"
+      ],
+      "group_size": 3,
+      "enabled": true,
+      "apply_fade_envelope": false
+    },
+    "realistic_hard": {
+      "name": "realistic_hard",
+      "description": "Harder off-center queries with fade envelopes.",
+      "lengths_seconds": [
+        1.0,
+        2.0,
+        3.0
+      ],
+      "centered": false,
+      "random_offset": true,
+      "conditions": [
+        "realistic_hard"
+      ],
+      "group_size": 1,
+      "enabled": false,
+      "apply_fade_envelope": true
+    }
+  },
+  "windowing_specs": {
+    "single_center": {
+      "name": "single_center",
+      "description": "Notebook 2 single centered reference segment.",
+      "window_count": 1,
+      "segment_seconds": 3.0,
+      "centered_only": true,
+      "enabled": true
+    },
+    "multi3_even": {
+      "name": "multi3_even",
+      "description": "Three evenly spaced reference windows.",
+      "window_count": 3,
+      "segment_seconds": 3.0,
+      "centered_only": false,
+      "enabled": true
+    },
+    "multi5_even": {
+      "name": "multi5_even",
+      "description": "Five evenly spaced reference windows.",
+      "window_count": 5,
+      "segment_seconds": 3.0,
+      "centered_only": false,
+      "enabled": false
+    }
+  }
+}

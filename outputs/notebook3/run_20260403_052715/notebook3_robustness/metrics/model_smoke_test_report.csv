@@ -1,0 +1,4 @@
+model_name,input_mode,loss,anchor_shape,positive_shape
+cnn,spectrogram,0.9577915072441101,"(4, 128)","(4, 128)"
+hybrid_transformer,spectrogram,1.80584716796875,"(4, 128)","(4, 128)"
+frozen_mert,mert_waveform,1.5232576131820679,"(8, 128)","(8, 128)"

@@ -1,8 +1,6 @@
 {
   "export_timestamp": "20260403_020813",
   "local_output_root": "/content/song_fingerprinting_outputs",
-  "local_zip_path": "/content/song_fingerprinting_outputs/song_fingerprinting_outputs.zip",
   "persistent_export_dir": "/content/drive/MyDrive/transformer_fingerprinting/artifacts/notebook2/run_20260403_020813",
-  "persistent_output_dir": "/content/drive/MyDrive/transformer_fingerprinting/artifacts/notebook2/run_20260403_020813/song_fingerprinting_outputs",
-  "persistent_zip_path": "/content/drive/MyDrive/transformer_fingerprinting/artifacts/notebook2/run_20260403_020813/song_fingerprinting_outputs.zip"
+  "persistent_output_dir": "/content/drive/MyDrive/transformer_fingerprinting/artifacts/notebook2/run_20260403_020813/song_fingerprinting_outputs"
 }
