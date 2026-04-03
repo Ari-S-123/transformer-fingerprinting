@@ -1,0 +1,2 @@
+run_id,model_name,augmentation_profile,embed_dim,epoch,val_loss,clean_top1,clean_top5,clean_top10,clean_mrr,noise_top1,pitch_top1,time_top1,lowpass_top1,highpass_top1,checkpoint_path,notes
+hybrid_transformer_extended_embed256,hybrid_transformer,extended,256,3,2.2801624326144947,0.99625,1.0,1.0,0.998125,0.0875,0.165,0.50875,0.45,0.25125,/content/song_fingerprinting_outputs/hybrid_transformer_extended_embed256/checkpoint_best.pt,Best checkpoint selected by validation NT-Xent loss.

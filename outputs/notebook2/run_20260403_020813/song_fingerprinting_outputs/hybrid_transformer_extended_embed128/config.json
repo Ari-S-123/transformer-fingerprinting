@@ -1,0 +1,102 @@
+{
+  "experiment": {
+    "metadata_url": "https://os.unil.cloud.switch.ch/fma/fma_metadata.zip",
+    "audio_url": "https://os.unil.cloud.switch.ch/fma/fma_small.zip",
+    "paths": {
+      "data_root": "/content/data",
+      "output_root": "/content/song_fingerprinting_outputs"
+    },
+    "seed": 42,
+    "batch_size": 24,
+    "mert_batch_size": 8,
+    "num_workers": 4,
+    "sample_rate": 16000,
+    "n_fft": 1024,
+    "hop_length": 256,
+    "n_mels": 128,
+    "segment_seconds": 3.0,
+    "amp_enabled": true,
+    "gradient_checkpointing": false,
+    "early_stopping_patience": 3,
+    "top_k": [
+      1,
+      5,
+      10
+    ],
+    "projection_hidden_dim": 1024,
+    "max_train_tracks": null,
+    "max_eval_tracks": null,
+    "smoke_test_track_count": 24,
+    "gradient_clip_norm": 1.0,
+    "run_presets": [
+      {
+        "model_name": "cnn",
+        "augmentation_profile": "baseline",
+        "embed_dim": 128,
+        "epochs": 6,
+        "learning_rate": 0.0001,
+        "weight_decay": 0.0001,
+        "temperature": 0.07,
+        "freeze_backbone": false,
+        "enabled": true
+      },
+      {
+        "model_name": "hybrid_transformer",
+        "augmentation_profile": "baseline",
+        "embed_dim": 128,
+        "epochs": 6,
+        "learning_rate": 0.0001,
+        "weight_decay": 0.0001,
+        "temperature": 0.07,
+        "freeze_backbone": false,
+        "enabled": true
+      },
+      {
+        "model_name": "hybrid_transformer",
+        "augmentation_profile": "extended",
+        "embed_dim": 128,
+        "epochs": 6,
+        "learning_rate": 0.0001,
+        "weight_decay": 0.0001,
+        "temperature": 0.07,
+        "freeze_backbone": false,
+        "enabled": true
+      },
+      {
+        "model_name": "hybrid_transformer",
+        "augmentation_profile": "extended",
+        "embed_dim": 256,
+        "epochs": 6,
+        "learning_rate": 0.0001,
+        "weight_decay": 0.0001,
+        "temperature": 0.07,
+        "freeze_backbone": false,
+        "enabled": true
+      },
+      {
+        "model_name": "frozen_mert",
+        "augmentation_profile": "extended",
+        "embed_dim": 128,
+        "epochs": 4,
+        "learning_rate": 0.001,
+        "weight_decay": 0.0001,
+        "temperature": 0.07,
+        "freeze_backbone": true,
+        "enabled": true
+      }
+    ],
+    "dataloader_prefetch_factor": 4,
+    "dataloader_persistent_workers": true
+  },
+  "run": {
+    "model_name": "hybrid_transformer",
+    "augmentation_profile": "extended",
+    "embed_dim": 128,
+    "epochs": 6,
+    "learning_rate": 0.0001,
+    "weight_decay": 0.0001,
+    "temperature": 0.07,
+    "freeze_backbone": false,
+    "enabled": true
+  }
+}
