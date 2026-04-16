@@ -89,7 +89,8 @@ The notebooks write outputs under:
 
 The main exported artifacts are expected in the notebook's `exports` directory and include:
 
-(notebook 4 example)
+(Notebook 4 example)
+
 - `runtime_report.csv`
 - `artifact_check_report.csv`
 - `dataset_layout_report.csv`
