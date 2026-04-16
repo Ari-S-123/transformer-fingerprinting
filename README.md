@@ -19,7 +19,7 @@ The notebooks are intended to be read and run in order:
 
 Notebook 4 is the final synthesis notebook. It is deliberately self-contained and is derived from Notebook 3 instead of introducing a new shared Python package layer.
 
-The notebook now covers:
+The notebook covers:
 
 - Runtime inspection for GPU, RAM, disk, Drive mount status, and write access.
 - Historical artifact discovery across Notebook 2, Notebook 3, and partial Notebook 4 outputs.
@@ -29,43 +29,22 @@ The notebook now covers:
 
 ## Execution environment
 
-Notebook 4 is designed for Google Colab with a GPU runtime and Google Drive.
+The notebooks are designed for Google Colab with a GPU runtime and Google Drive.
 
 That is not optional in practice if you want the full intended run:
 
-- The notebook defaults to `fma_medium`.
 - The runtime/output paths are Colab-style paths under `/content/...`.
 - The notebook expects Drive-backed caching and artifact reuse.
-- Local validation in this repository only guarantees notebook structure and Python syntax, not a full local `fma_medium` execution.
-
-If the runtime is smaller than expected, Notebook 4 can downgrade execution mode, but the default target remains the full Colab workflow.
-
-## Default Notebook 4 configuration
-
-The current default behavior is:
-
-- `execution_mode="standard"`
-- `run_baseline_historical_eval=True`
-- `run_aggregation_eval=False`
-- `run_hard_negative_retraining=False`
-- `run_failure_analysis=True`
-- `run_plot_exports=True`
-- `run_zip_export=True`
-- `resume_from_partial_artifacts=True`
-- `skip_existing_exports=True`
-- `force_recompute_embeddings=False`
-- `force_rebuild_indices=False`
-- active query regimes include `realistic_hard`
-- active windowing includes `single_center`, `multi3_even`, and `multi5_even`
 
 ## Main outputs
 
-Notebook 4 writes outputs under:
+The notebooks write outputs under:
 
-- `/content/song_fingerprinting_outputs/notebook4_fma_medium_scaleup`
+- `/content/song_fingerprinting_outputs`
 
 The main exported artifacts are expected in the notebook's `exports` directory and include:
 
+(notebook 4 example)
 - `runtime_report.csv`
 - `artifact_check_report.csv`
 - `dataset_layout_report.csv`
