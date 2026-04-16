@@ -1,6 +1,6 @@
 # transformer-fingerprinting
 
-Contrastive audio fingerprinting experiments built around Jupyter notebooks. The project starts with dataset exploration, moves through baseline training and robustness evaluation, and ends with a Colab-first `fma_medium` scale-up notebook that adds temporal aggregation and hard-negative retraining.
+Contrastive audio fingerprinting experiments built around Jupyter notebooks. The project starts with dataset exploration, moves through baseline training and robustness evaluation, and ends with a Colab-first `fma_medium` scale-up notebook.
 
 ## Notebook sequence
 
@@ -13,7 +13,7 @@ The notebooks are intended to be read and run in order:
 3. `jupyter-notebooks/03_robustness_ablation_and_realistic_evaluation.ipynb`
    Robustness ablations, harsher retrieval degradations, multi-window indexing, and historical comparison logic.
 4. `jupyter-notebooks/04_fma_medium_scaleup_hard_negatives_and_temporal_aggregation.ipynb`
-   Final project-stage notebook. This notebook scales evaluation from `fma_small` to `fma_medium`, re-evaluates historical runs, enables `realistic_hard` and `multi5_even` by default, adds grouped multi-segment aggregation, mines hard negatives, retrains a targeted subset of models, and exports final comparison artifacts.
+   Final project-stage notebook. This notebook scales evaluation from `fma_small` to `fma_medium`, re-evaluates historical runs, enables `realistic_hard` and `multi5_even` by default, adds but does not use grouped multi-segment aggregation or mine hard negatives (we had a bug and could not rerun the whole notebook because of time and resource limits), retrains a targeted subset of models, and exports final comparison artifacts.
 
 ## Notebook 4 scope
 
@@ -25,16 +25,6 @@ The notebook now covers:
 - Historical artifact discovery across Notebook 2, Notebook 3, and partial Notebook 4 outputs.
 - `fma_medium` bootstrap, extraction, validation, and undecodable-audio reporting.
 - Baseline historical evaluation on the harder retrieval matrix.
-- Multi-segment aggregation with:
-  - `single_segment_top1`
-  - `segment_vote_topk`
-  - `weighted_segment_vote`
-  - `temporal_consistency_huber`
-- Hard-negative mining and retraining for the default target subset:
-  - `cnn_baseline_embed128`
-  - `hybrid_transformer_baseline_embed128`
-  - `hybrid_transformer_one_of_k_embed128`
-  - `frozen_mert_extended_embed128`
 - Final ranking tables, failure cases, markdown conclusions, presentation summary, plots, and zipped export bundle.
 
 ## Execution environment
@@ -56,8 +46,8 @@ The current default behavior is:
 
 - `execution_mode="standard"`
 - `run_baseline_historical_eval=True`
-- `run_aggregation_eval=True`
-- `run_hard_negative_retraining=True`
+- `run_aggregation_eval=False`
+- `run_hard_negative_retraining=False`
 - `run_failure_analysis=True`
 - `run_plot_exports=True`
 - `run_zip_export=True`
@@ -83,10 +73,10 @@ The main exported artifacts are expected in the notebook's `exports` directory a
 - `smoke_test_report.csv`
 - `notebook4_base_eval_long.csv`
 - `notebook4_base_eval_summary.csv`
-- `notebook4_aggregation_eval_long.csv`
-- `notebook4_aggregation_eval_summary.csv`
-- `notebook4_hard_negative_eval_long.csv`
-- `notebook4_hard_negative_eval_summary.csv`
+- `notebook4_aggregation_eval_long.csv` (not used)
+- `notebook4_aggregation_eval_summary.csv` (not used)
+- `notebook4_hard_negative_eval_long.csv` (not used)
+- `notebook4_hard_negative_eval_summary.csv` (not used)
 - `notebook4_cross_model_comparison.csv`
 - `notebook4_failure_cases.csv`
 - `faiss_sweep_results.csv`

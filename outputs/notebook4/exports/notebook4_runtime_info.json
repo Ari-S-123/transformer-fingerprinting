@@ -1,0 +1,29 @@
+{
+  "runtime": {
+    "python_version": "3.12.13",
+    "torch_version": "2.10.0+cu128",
+    "torchaudio_version": "2.10.0+cu128",
+    "transformers_version": "5.0.0",
+    "faiss_version": "1.13.2",
+    "cuda_available": true,
+    "device_name": "NVIDIA H100 80GB HBM3",
+    "total_vram_gb": 79.1788330078125,
+    "bf16_supported": true
+  },
+  "config_hash": "e7a7b5d8faca4480",
+  "drive_root": "/content/drive",
+  "notebook2_output_roots": [
+    "/content/song_fingerprinting_outputs",
+    "/content/drive/MyDrive/song_fingerprinting_outputs",
+    "/content/drive/MyDrive/transformer-fingerprinting/song_fingerprinting_outputs",
+    "/content/drive/MyDrive/Colab Notebooks/song_fingerprinting_outputs",
+    "/content/drive/MyDrive/transformer_fingerprinting/artifacts/notebook2/run_20260403_020813/song_fingerprinting_outputs"
+  ],
+  "notebook3_output_roots": [
+    "/content/song_fingerprinting_outputs/notebook3_robustness",
+    "/content/drive/MyDrive/transformer_fingerprinting/artifacts/notebook3/run_20260403_052715/notebook3_robustness"
+  ],
+  "notebook4_output_roots": [
+    "/content/song_fingerprinting_outputs/notebook4_fma_medium_scaleup"
+  ]
+}

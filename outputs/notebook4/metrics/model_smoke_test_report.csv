@@ -1,0 +1,8 @@
+check_name,status,detail
+split_inventory,ok,"{""training"": 19918, ""validation"": 2505, ""test"": 2572}"
+audio_decode_probe,ok,"{""track_id"": 181, ""samples"": 480044}"
+forward_backward_cnn,ok,"{""input_mode"": ""spectrogram"", ""loss"": 1.4467523097991943, ""anchor_shape"": [4, 128], ""positive_shape"": [4, 128]}"
+forward_backward_hybrid_transformer,ok,"{""input_mode"": ""spectrogram"", ""loss"": 1.0098512172698975, ""anchor_shape"": [4, 128], ""positive_shape"": [4, 128]}"
+forward_backward_frozen_mert,ok,"{""input_mode"": ""mert_waveform"", ""loss"": 1.333365797996521, ""anchor_shape"": [8, 128], ""positive_shape"": [8, 128]}"
+tiny_retrieval_and_aggregation,ok,"{""reference_rows"": 8, ""query_rows"": 24, ""grouped_query_rows"": 24, ""segment_neighbor_rows"": 192, ""aggregation_rows"": 8, ""index_size_mb"": 0.003949165344238281}"
+hard_negative_cache_roundtrip,ok,"{""pairs"": 96, ""cache_files"": 1}"

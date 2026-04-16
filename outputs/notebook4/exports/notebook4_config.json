@@ -1,0 +1,224 @@
+{
+  "config": {
+    "metadata_url": "https://os.unil.cloud.switch.ch/fma/fma_metadata.zip",
+    "audio_url": "https://os.unil.cloud.switch.ch/fma/fma_medium.zip",
+    "paths": {
+      "data_root": "/content/data",
+      "output_root": "/content/song_fingerprinting_outputs/notebook4_fma_medium_scaleup",
+      "drive_mount_point": "/content/drive",
+      "cache_dir": "/content/song_fingerprinting_outputs/notebook4_fma_medium_scaleup/cache",
+      "checkpoint_dir": "/content/song_fingerprinting_outputs/notebook4_fma_medium_scaleup/checkpoints",
+      "embedding_cache_dir": "/content/song_fingerprinting_outputs/notebook4_fma_medium_scaleup/embeddings",
+      "index_dir": "/content/song_fingerprinting_outputs/notebook4_fma_medium_scaleup/indexes",
+      "metrics_dir": "/content/song_fingerprinting_outputs/notebook4_fma_medium_scaleup/metrics",
+      "plot_dir": "/content/song_fingerprinting_outputs/notebook4_fma_medium_scaleup/plots",
+      "export_dir": "/content/song_fingerprinting_outputs/notebook4_fma_medium_scaleup/exports",
+      "log_dir": "/content/song_fingerprinting_outputs/notebook4_fma_medium_scaleup/logs"
+    },
+    "seed": 42,
+    "batch_size": 24,
+    "mert_batch_size": 8,
+    "num_workers": 4,
+    "dataloader_prefetch_factor": 4,
+    "dataloader_persistent_workers": true,
+    "sample_rate": 16000,
+    "n_fft": 1024,
+    "hop_length": 256,
+    "n_mels": 128,
+    "segment_seconds": 3.0,
+    "amp_enabled": true,
+    "gradient_checkpointing": false,
+    "early_stopping_patience": 3,
+    "top_k": [
+      1,
+      5,
+      10
+    ],
+    "projection_hidden_dim": 1024,
+    "max_train_tracks": null,
+    "max_eval_tracks": null,
+    "smoke_test_track_count": 16,
+    "gradient_clip_norm": 1.0,
+    "run_presets": [
+      {
+        "model_name": "hybrid_transformer",
+        "augmentation_profile": "filters_only",
+        "embed_dim": 128,
+        "epochs": 6,
+        "learning_rate": 0.0001,
+        "weight_decay": 0.0001,
+        "temperature": 0.07,
+        "freeze_backbone": false,
+        "enabled": true
+      },
+      {
+        "model_name": "hybrid_transformer",
+        "augmentation_profile": "one_of_k",
+        "embed_dim": 128,
+        "epochs": 6,
+        "learning_rate": 0.0001,
+        "weight_decay": 0.0001,
+        "temperature": 0.07,
+        "freeze_backbone": false,
+        "enabled": true
+      },
+      {
+        "model_name": "hybrid_transformer",
+        "augmentation_profile": "severity_controlled",
+        "embed_dim": 128,
+        "epochs": 6,
+        "learning_rate": 0.0001,
+        "weight_decay": 0.0001,
+        "temperature": 0.07,
+        "freeze_backbone": false,
+        "enabled": true
+      },
+      {
+        "model_name": "hybrid_transformer",
+        "augmentation_profile": "two_of_k",
+        "embed_dim": 128,
+        "epochs": 6,
+        "learning_rate": 0.0001,
+        "weight_decay": 0.0001,
+        "temperature": 0.07,
+        "freeze_backbone": false,
+        "enabled": false
+      },
+      {
+        "model_name": "hybrid_transformer",
+        "augmentation_profile": "curriculum_filters_late",
+        "embed_dim": 128,
+        "epochs": 6,
+        "learning_rate": 0.0001,
+        "weight_decay": 0.0001,
+        "temperature": 0.07,
+        "freeze_backbone": false,
+        "enabled": false
+      }
+    ],
+    "strict_artifact_validation": true,
+    "allow_retrain_missing_baselines": false,
+    "mount_google_drive": true,
+    "save_to_drive": true,
+    "use_torch_compile": false,
+    "run_error_analysis": true,
+    "run_pexeso": false,
+    "run_optional_finetune": false,
+    "execution_mode": "standard",
+    "run_baseline_historical_eval": true,
+    "run_aggregation_eval": false,
+    "run_hard_negative_retraining": false,
+    "run_failure_analysis": true,
+    "run_plot_exports": true,
+    "run_zip_export": true,
+    "resume_from_partial_artifacts": true,
+    "skip_existing_exports": true,
+    "force_recompute_embeddings": false,
+    "force_rebuild_indices": false,
+    "quick_mode": false,
+    "short_query_lengths_seconds": [
+      1.0,
+      2.0,
+      3.0
+    ],
+    "multi_segment_group_size": 3,
+    "search_oversample_factor": 16,
+    "faiss_nprobe_values": [
+      1,
+      4,
+      8
+    ],
+    "active_training_policy_names": [
+      "filters_only",
+      "one_of_k",
+      "severity_controlled"
+    ],
+    "active_control_run_ids": [
+      "cnn_baseline_embed128",
+      "hybrid_transformer_baseline_embed128",
+      "hybrid_transformer_extended_embed128",
+      "hybrid_transformer_extended_embed256",
+      "frozen_mert_extended_embed128"
+    ],
+    "historical_run_ids": [
+      "cnn_baseline_embed128",
+      "hybrid_transformer_baseline_embed128",
+      "hybrid_transformer_extended_embed128",
+      "hybrid_transformer_extended_embed256",
+      "frozen_mert_extended_embed128",
+      "hybrid_transformer_filters_only_embed128",
+      "hybrid_transformer_one_of_k_embed128",
+      "hybrid_transformer_severity_controlled_embed128"
+    ],
+    "active_query_regime_names": [
+      "clean_current",
+      "short_centered",
+      "short_offcenter",
+      "combined_moderate",
+      "multi_segment_same_track",
+      "realistic_hard"
+    ],
+    "active_windowing_names": [
+      "single_center",
+      "multi3_even",
+      "multi5_even"
+    ],
+    "active_index_names": [
+      "exact_ip",
+      "ivfflat_nprobe1",
+      "ivfflat_nprobe4",
+      "ivfflat_nprobe8",
+      "ivfpq_nprobe4"
+    ],
+    "hard_negative_config": {
+      "target_run_ids": [
+        "cnn_baseline_embed128",
+        "hybrid_transformer_baseline_embed128",
+        "hybrid_transformer_one_of_k_embed128",
+        "frozen_mert_extended_embed128"
+      ],
+      "candidate_track_cap": 2048,
+      "candidate_segments_per_track": 3,
+      "neighbors_to_search": 20,
+      "negatives_per_anchor": 2,
+      "hard_negative_ratio": 0.5,
+      "triplet_margin": 0.2,
+      "triplet_weight": 0.25,
+      "warm_start_epochs": 1,
+      "retrain_epochs": 3,
+      "refresh_after_epoch": 2,
+      "enabled": true
+    },
+    "aggregation_config": {
+      "modes": [
+        "single_segment_top1",
+        "segment_vote_topk",
+        "weighted_segment_vote",
+        "temporal_consistency_huber"
+      ],
+      "top_k_per_segment": 10,
+      "min_similarity_threshold": 0.05,
+      "residual_tolerance_seconds": 0.75,
+      "minimum_inlier_count": 2,
+      "weighted_similarity_weight": 0.55,
+      "vote_count_weight": 0.15,
+      "temporal_inlier_weight": 0.2,
+      "fit_quality_weight": 0.1,
+      "enabled": true
+    },
+    "optional_partial_unfreeze_last_layers": 2,
+    "pexeso_root": null
+  },
+  "runtime": {
+    "python_version": "3.12.13",
+    "torch_version": "2.10.0+cu128",
+    "torchaudio_version": "2.10.0+cu128",
+    "transformers_version": "5.0.0",
+    "faiss_version": "1.13.2",
+    "cuda_available": true,
+    "device_name": "NVIDIA H100 80GB HBM3",
+    "total_vram_gb": 79.1788330078125,
+    "bf16_supported": true
+  },
+  "config_hash": "e7a7b5d8faca4480"
+}

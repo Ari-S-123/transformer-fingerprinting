@@ -1,0 +1,9 @@
+base_run_id,model_name,baseline_windowing_name,baseline_index_name,baseline_ranking_score,baseline_floor_top1,aggregation_mode,aggregation_floor_top1,hard_negative_run_id,hard_negative_floor_top1,aggregation_gain_over_baseline,hard_negative_gain_over_baseline,best_intervention,best_floor_top1
+frozen_mert_extended_embed128,frozen_mert,single_center,ivfflat_nprobe8,0.30551790789411337,0.059097978227060664,,,,,,,baseline,0.059097978227060664
+hybrid_transformer_severity_controlled_embed128,hybrid_transformer,single_center,ivfflat_nprobe8,0.2909705029502555,0.027345775012960084,,,,,,,baseline,0.027345775012960084
+hybrid_transformer_one_of_k_embed128,hybrid_transformer,single_center,exact_ip,0.29479646370150164,0.02177293934681182,,,,,,,baseline,0.02177293934681182
+cnn_baseline_embed128,cnn,multi5_even,ivfflat_nprobe8,0.40088009943385394,0.014496778493668075,,,,,,,baseline,0.014496778493668075
+hybrid_transformer_filters_only_embed128,hybrid_transformer,single_center,ivfpq_nprobe4,0.2743455549983527,0.007646448937273199,,,,,,,baseline,0.007646448937273199
+hybrid_transformer_extended_embed128,hybrid_transformer,single_center,ivfpq_nprobe4,0.2209669989722004,0.006091238983929497,,,,,,,baseline,0.006091238983929497
+hybrid_transformer_extended_embed256,hybrid_transformer,single_center,ivfpq_nprobe4,0.21050065086330327,0.005313634007257646,,,,,,,baseline,0.005313634007257646
+hybrid_transformer_baseline_embed128,hybrid_transformer,multi5_even,ivfflat_nprobe8,0.3139161172650631,0.005165518773605866,,,,,,,baseline,0.005165518773605866

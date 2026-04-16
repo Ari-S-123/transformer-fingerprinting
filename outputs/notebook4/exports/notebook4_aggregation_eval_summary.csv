@@ -1,0 +1,1 @@
+evaluation_phase,aggregation_mode,run_id,source,model_name,augmentation_profile,embed_dim,windowing_name,index_name,index_kind,clean_top1,noise_top1,pitch_top1,time_top1,lowpass_top1,highpass_top1,combined_moderate_top1,realistic_hard_top1,mean_degraded_top1,worst_condition_top1,robustness_gap,mrr,query_group_count,regime_coverage,latency_ms,index_size_mb,ranking_score

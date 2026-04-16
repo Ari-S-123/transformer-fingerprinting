@@ -1,0 +1,113 @@
+{
+  "historical_descriptors": [
+    {
+      "run_id": "cnn_baseline_embed128",
+      "source": "notebook2",
+      "model_name": "cnn",
+      "augmentation_profile": "baseline",
+      "embed_dim": 128,
+      "checkpoint_path": "/content/drive/MyDrive/transformer_fingerprinting/artifacts/notebook2/run_20260403_020813/song_fingerprinting_outputs/cnn_baseline_embed128/checkpoint_best.pt",
+      "freeze_backbone": false,
+      "notes": "Recovered from notebook2."
+    },
+    {
+      "run_id": "frozen_mert_extended_embed128",
+      "source": "notebook2",
+      "model_name": "frozen_mert",
+      "augmentation_profile": "extended_existing",
+      "embed_dim": 128,
+      "checkpoint_path": "/content/drive/MyDrive/transformer_fingerprinting/artifacts/notebook2/run_20260403_020813/song_fingerprinting_outputs/frozen_mert_extended_embed128/checkpoint_best.pt",
+      "freeze_backbone": true,
+      "notes": "Recovered from notebook2."
+    },
+    {
+      "run_id": "hybrid_transformer_baseline_embed128",
+      "source": "notebook2",
+      "model_name": "hybrid_transformer",
+      "augmentation_profile": "baseline",
+      "embed_dim": 128,
+      "checkpoint_path": "/content/drive/MyDrive/transformer_fingerprinting/artifacts/notebook2/run_20260403_020813/song_fingerprinting_outputs/hybrid_transformer_baseline_embed128/checkpoint_best.pt",
+      "freeze_backbone": false,
+      "notes": "Recovered from notebook2."
+    },
+    {
+      "run_id": "hybrid_transformer_extended_embed128",
+      "source": "notebook2",
+      "model_name": "hybrid_transformer",
+      "augmentation_profile": "extended_existing",
+      "embed_dim": 128,
+      "checkpoint_path": "/content/drive/MyDrive/transformer_fingerprinting/artifacts/notebook2/run_20260403_020813/song_fingerprinting_outputs/hybrid_transformer_extended_embed128/checkpoint_best.pt",
+      "freeze_backbone": false,
+      "notes": "Recovered from notebook2."
+    },
+    {
+      "run_id": "hybrid_transformer_extended_embed256",
+      "source": "notebook2",
+      "model_name": "hybrid_transformer",
+      "augmentation_profile": "extended_existing",
+      "embed_dim": 256,
+      "checkpoint_path": "/content/drive/MyDrive/transformer_fingerprinting/artifacts/notebook2/run_20260403_020813/song_fingerprinting_outputs/hybrid_transformer_extended_embed256/checkpoint_best.pt",
+      "freeze_backbone": false,
+      "notes": "Recovered from notebook2."
+    },
+    {
+      "run_id": "hybrid_transformer_filters_only_embed128",
+      "source": "notebook3",
+      "model_name": "hybrid_transformer",
+      "augmentation_profile": "filters_only",
+      "embed_dim": 128,
+      "checkpoint_path": "/content/drive/MyDrive/transformer_fingerprinting/artifacts/notebook3/run_20260403_052715/notebook3_robustness/checkpoints/hybrid_transformer_filters_only_embed128/checkpoint_best.pt",
+      "freeze_backbone": false,
+      "notes": "Recovered from notebook3."
+    },
+    {
+      "run_id": "hybrid_transformer_one_of_k_embed128",
+      "source": "notebook3",
+      "model_name": "hybrid_transformer",
+      "augmentation_profile": "one_of_k",
+      "embed_dim": 128,
+      "checkpoint_path": "/content/drive/MyDrive/transformer_fingerprinting/artifacts/notebook3/run_20260403_052715/notebook3_robustness/checkpoints/hybrid_transformer_one_of_k_embed128/checkpoint_best.pt",
+      "freeze_backbone": false,
+      "notes": "Recovered from notebook3."
+    },
+    {
+      "run_id": "hybrid_transformer_severity_controlled_embed128",
+      "source": "notebook3",
+      "model_name": "hybrid_transformer",
+      "augmentation_profile": "severity_controlled",
+      "embed_dim": 128,
+      "checkpoint_path": "/content/drive/MyDrive/transformer_fingerprinting/artifacts/notebook3/run_20260403_052715/notebook3_robustness/checkpoints/hybrid_transformer_severity_controlled_embed128/checkpoint_best.pt",
+      "freeze_backbone": false,
+      "notes": "Recovered from notebook3."
+    }
+  ],
+  "hard_negative_artifacts": [],
+  "baseline_regime_names": [
+    "clean_current",
+    "short_centered",
+    "short_offcenter",
+    "combined_moderate",
+    "multi_segment_same_track",
+    "realistic_hard"
+  ],
+  "aggregation_regime_names": [
+    "multi_segment_same_track",
+    "multi_segment_fragmented_weighted",
+    "multi_segment_temporally_jittered"
+  ],
+  "hard_negative_eval_regime_names": [
+    "clean_current",
+    "short_centered",
+    "short_offcenter",
+    "combined_moderate",
+    "multi_segment_same_track",
+    "realistic_hard",
+    "hard_negative_short_queries"
+  ],
+  "export_counts": {
+    "baseline_long_rows": 6000,
+    "aggregation_long_rows": 0,
+    "hard_negative_long_rows": 0,
+    "failure_rows": 250
+  }
+}

@@ -1,0 +1,16 @@
+component,value
+python_version,3.12.13
+torch_version,2.10.0+cu128
+torchaudio_version,2.10.0+cu128
+transformers_version,5.0.0
+faiss_version,1.13.2
+cuda_available,True
+gpu_name,NVIDIA H100 80GB HBM3
+total_vram_gb,79.18
+bf16_supported,True
+total_ram_gb,230.05
+free_disk_gb,192.44
+required_local_disk_gb,74.00
+drive_mounted,True
+output_root_writable,True
+execution_mode,standard
