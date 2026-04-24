@@ -1,8 +1,3 @@
----
-output:
-  pdf_document: default
-  html_document: default
----
 # Transformer-Based Music Fingerprinting
 
 ## Contrastive Audio Fingerprinting with CNN, Hybrid Transformer, and Frozen MERT Architectures
